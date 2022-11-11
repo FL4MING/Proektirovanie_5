@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Лабораторная работа №5</title>
+</head>
+<body>
+	<form name="form" action="javascript:browserType()">
+		<p id="formula">Формула для данного браузера:</p>
+		<input name="X" value="0"> - введите X
+		<br>
+		<br>
+		<input type="submit" name="Count" value="Рассчитать">
+		<br>
+		<p id="result">
+	</form>
+	<script type="text/javascript">
+		function Count(formula, result) {
+			this.formula = formula;
+			this.result = result;
+			var inFormula = document.getElementById('formula');
+			var inResult = document.getElementById('result');
+			inFormula.innerHTML = this.formula;
+			inResult.innerHTML = "Результат: "+this.result;
+		}
+		function browserType(){
+			let browser;
+			let formula;
+			let result;
+			let X = document.form.X.value;
+			let type = navigator.userAgent;
+			if (type.indexOf("Chrome")!= -1) {
+				formula = "4X - 1";
+				result = 4*X-1;
+			}
+			if (type.indexOf("Firefox")!= -1) {
+				formula = "-3X + 9";
+				result = -3*X+9;
+			}
+			if (type.indexOf("OPR")!= -1) {
+				formula = "(x^2) - 9";
+				result = (Math.pow(X,2))-9;
+			}
+			if (type.indexOf("Edg")!= -1) {
+				formula = "10X^2";
+				result = -10*Math.pow(X,2);
+			}
+			Count("Формула для данного браузера: " + formula, result);
+		}
+	</script>
+</body>
+</html>
